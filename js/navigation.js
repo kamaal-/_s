@@ -3,32 +3,42 @@
  *
  * Handles toggling the navigation menu for small screens.
  */
-( function() {
-	var container, button, menu;
+(function () {
+    "use strict";
+    var container,
+        button,
+        menu;
 
-	container = document.getElementById( 'site-navigation' );
-	if ( ! container )
-		return;
+    container = document.getElementById('site-navigation');
 
-	button = container.getElementsByTagName( 'button' )[0];
-	if ( 'undefined' === typeof button )
-		return;
+    if (!container) {
+        return;
+    }
 
-	menu = container.getElementsByTagName( 'ul' )[0];
+    button = container.getElementsByTagName('button')[0];
+    //typeof removed deu to --> JS Lint: Unexpected 'typeof'
+    if ('undefined' === button) {
+        return;
+    }
 
-	// Hide menu toggle button if menu is empty and return early.
-	if ( 'undefined' === typeof menu ) {
-		button.style.display = 'none';
-		return;
-	}
+    menu = container.getElementsByTagName('ul')[0];
 
-	if ( -1 === menu.className.indexOf( 'nav-menu' ) )
-		menu.className += ' nav-menu';
+    // Hide menu toggle button if menu is empty and return early. 
+    //typeof removed deu to --> JS Lint: Unexpected 'typeof'
+    if ('undefined' === menu) {
+        button.style.display = 'none';
+        return;
+    }
 
-	button.onclick = function() {
-		if ( -1 !== container.className.indexOf( 'toggled' ) )
-			container.className = container.className.replace( ' toggled', '' );
-		else
-			container.className += ' toggled';
-	};
-} )();
+    if (-1 === menu.className.indexOf('nav-menu')) {
+        menu.className += ' nav-menu';
+    }
+
+    button.onclick = function () {
+        if (-1 !== container.className.indexOf('toggled')) {
+            container.className = container.className.replace('toggled', '');
+        } else {
+            container.className += ' toggled';
+        }
+    };
+}());
